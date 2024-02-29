@@ -1,4 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
   Box,
   Button,
   FormControl,
@@ -7,12 +11,59 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
+import firebaseApp from "../../../firebase";
+import { useAuth } from "../../provider/AuthContext";
+import { useNavigate } from "react-router-dom";
+import FullSpin from "../../components/FullSpin";
 
 export const Register = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { user, loading, setUser } = useAuth()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home")
+    }
+  }, [loading, user])
+
+  if (loading) {
+    return <FullSpin />
+  }
+
+  const handleSignup = () => {
+    if (!nome || !email || !password) {
+      alert("Erro no formulário. Preencha todos os campos");
+      return;
+    }
+
+    const auth = getAuth(firebaseApp);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateProfile(user, {
+          displayName: nome,
+        }).then(() => {
+          console.log("Usuário criado:", user);
+          alert("Usuário criado com sucesso!")
+          setUser(user)
+          setError("");
+        });
+      })
+      .catch((error) => {
+        console.error("Erro ao criar usuário:", error);
+        setError(`Erro ao criar usuário:, ${error}`);
+      });
+  };
 
   return (
     <Box
@@ -62,16 +113,16 @@ export const Register = () => {
               bg="blue.400"
               color="white"
               _hover={{ bg: "blue.500" }}
-            //   onClick={handleSignup}
+              onClick={handleSignup}
             >
               Cadastrar
             </Button>
-            {/* {error?.length > 1 && (
+            {error?.length > 1 && (
               <Alert status="error">
                 <AlertIcon />
                 <AlertTitle>{error}</AlertTitle>
               </Alert>
-            )} */}
+            )}
           </Stack>
         </form>
       </Box>

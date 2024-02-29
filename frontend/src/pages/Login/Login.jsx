@@ -1,17 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, FormControl, FormLabel, Heading, Input, Link, Stack, Text } from "@chakra-ui/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../provider/AuthContext";
+import FullSpin from "../../components/FullSpin";
 
 export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { user, loading, handleLogin } = useAuth()
 
-    const handleLogin = () => {
-        // Aqui você pode adicionar a lógica de autenticação
-        console.log("Email:", email);
-        console.log("Password:", password);
-    };
+    useEffect(() => {
+        if (user) {
+            navigate("/home")
+        }
+    }, [loading, user])
+
+    if (loading) {
+        return <FullSpin />
+    }
 
     const handleRegisterPage = () => {
         // Lógica para lidar cadastrar
@@ -62,7 +70,7 @@ export const Login = () => {
                             bg="blue.400"
                             color="white"
                             _hover={{ bg: "blue.500" }}
-                            onClick={handleLogin}
+                            onClick={() => handleLogin(email, password)}
 
                         >
                             Entrar
