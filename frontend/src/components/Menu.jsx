@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Button } from "@chakra-ui/button";
-import { Avatar, Link as ChakraLink, Menu, MenuButton, IconButton, MenuList, useBreakpointValue } from "@chakra-ui/react";
+import { Avatar, Link as ChakraLink, Menu, MenuButton, IconButton, MenuList, useBreakpointValue, MenuItem } from "@chakra-ui/react";
 import { Flex, Box, Text, } from "@chakra-ui/layout";
 import { useAuth } from "../provider/AuthContext";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ actualPage = "home" }) => {
-    const { user } = useAuth();
+    const { user, handleLogout } = useAuth();
     const isMobile = useBreakpointValue({ base: true, md: false });
     const navigate = useNavigate()
 
@@ -20,8 +20,14 @@ const Header = ({ actualPage = "home" }) => {
                 {user ? (
                     <Flex alignItems="center">
                         <Text color="gray.500" mr={2}>{user?.displayName}</Text>
-                        <Avatar size="sm" name={user?.displayName} />
+                        <Menu>
+                            <MenuButton as={Avatar} name={user?.displayName} size="sm" p={2} />
+                            <MenuList>
+                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            </MenuList>
+                        </Menu>
                     </Flex>
+                   
                 ) : (
                     <Flex alignItems="center">
                         <Button onClick={() => {

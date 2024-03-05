@@ -22,7 +22,6 @@ export const Login = () => {
     }
 
     const handleRegisterPage = () => {
-        // Lógica para lidar cadastrar
         navigate("/register");
     };
 
@@ -52,7 +51,6 @@ export const Login = () => {
                                 value={email}
                                 onChange={(e) => {
                                     setEmail(e.target.value);
-                                    console.log(e.target.value)
                                 }}
                                 required
                             />
@@ -67,16 +65,16 @@ export const Login = () => {
                             />
                         </FormControl>
                         <Button
-                            bg="blue.400"
+                            bg="gray.800"
                             color="white"
-                            _hover={{ bg: "blue.500" }}
+                            _hover={{ bg: "gray.600" }}
                             onClick={() => handleLogin(email, password)}
 
                         >
                             Entrar
                         </Button>
                         <Text textAlign="center">
-                            <Link color="blue.400"
+                            <Link color="gray.800"
                                 onClick={handleRegisterPage}
                             >
                                 Cadastrar

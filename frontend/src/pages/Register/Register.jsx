@@ -110,9 +110,9 @@ export const Register = () => {
               />
             </FormControl>
             <Button
-              bg="blue.400"
+              bg="gray.800"
               color="white"
-              _hover={{ bg: "blue.500" }}
+              _hover={{ bg: "gray.600" }}
               onClick={handleSignup}
             >
               Cadastrar

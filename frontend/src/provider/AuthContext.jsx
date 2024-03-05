@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
-// AuthContext.tsx
 import {
     createContext,
     useState,
@@ -11,9 +10,6 @@ import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import firebaseApp from "../../firebase";
 
-
-
-// Criar o contexto de autenticação
 const AuthContext = createContext({
     user: null,
     setUser: null,
@@ -22,7 +18,6 @@ const AuthContext = createContext({
     handleLogin: () => { }
 });
 
-// Componente de provedor de contexto de autenticação
 export const AuthProvider = (
     props,
 ) => {
@@ -37,7 +32,6 @@ export const AuthProvider = (
             setLoading(false);
         });
 
-        // Cleanup
         return () => unsubscribe();
     }, []);
 
@@ -45,7 +39,7 @@ export const AuthProvider = (
         const auth = getAuth(firebaseApp);
         signOut(auth)
             .then(() => {
-                setUser(null); // Limpar o estado do usuário
+                setUser(null);
                 window.open
             })
             .catch((error) => {
@@ -57,7 +51,6 @@ export const AuthProvider = (
         if (!email || !password) {
             alert("Campos obrigatórios!")
         }
-        console.log(email, password)
         const auth = getAuth(firebaseApp);
         signInWithEmailAndPassword(auth, email, password).then((res) => {
             setUser(res?.user)
@@ -76,5 +69,4 @@ export const AuthProvider = (
     );
 };
 
-// Hook personalizado para acessar o contexto de autenticação
 export const useAuth = () => useContext(AuthContext);
