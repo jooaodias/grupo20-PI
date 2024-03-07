@@ -18,15 +18,6 @@ function App() {
   const [todosLocais, setTodosLocais] = useState([])
   const [locaisLoading, setLocaisLoading] = useState(true)
 
-  useEffect(() => {
-    if (user) {
-      navigate("/home")
-    }
-    if (!user && !loading) {
-      navigate("/login")
-    }
-  }, [loading, user])
-
   async function callMe() {
     const querySnapshot = await getDocs(collection(db, "locais"));
     const locais = []
@@ -71,7 +62,9 @@ function App() {
 
         </Grid>
         <Box mt="8">
-          <Button onClick={newLocal}>Cadastrar local</Button>
+            { user &&
+              <Button onClick={newLocal}>Cadastrar local</Button>
+            }
         </Box>
       </Box>
       <Footer />
