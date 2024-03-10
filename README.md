@@ -2,14 +2,15 @@
 
 ## Membros:
 
-- Denison Vieira Pimenta
-- Gabriel Krug de Oliveira
-- João Vitor Aleixo Dias
-- Leonardo José Bruno
-- Raquel Barros Freitas
+- Denison Vieira Pimenta > [rockydenison](https://github.com/rockydenison)
+- Gabriel Krug de Oliveira > [gabrielkrug](https://github.com/gabrielkrug)
+- João Vitor Aleixo Dias > [jooaodias](https://github.com/jooaodias)
+- Leonardo José Bruno > [leonardojb](https://github.com/leonardojb)
+- Raquel Barros Freitas > [rakeu](https://github.com/rakeu)
+
+### [Vídeo do projeto](https://www.youtube.com/watch?v=kyLBTeC-yms)
 
 ## Tecnologias utilizadas
-
 ### Frontend
 
 - React

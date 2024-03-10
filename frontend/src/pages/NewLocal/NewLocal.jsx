@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { Box, Button, FormControl, FormLabel, Input, Text, Textarea } from "@chakra-ui/react";
 import { useAuth } from "../../provider/AuthContext";
 import firebaseApp from "../../../firebase";
@@ -8,8 +9,14 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const NewLocal = () => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!user && !loading) {
+            navigate("/login")
+        }
+    }, [loading, user])
 
     const [formData, setFormData] = useState({
         title: "",
