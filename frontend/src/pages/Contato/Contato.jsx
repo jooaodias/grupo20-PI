@@ -6,11 +6,12 @@ const ContactPage = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Formulário enviado!");
+        alert("Formulário Enviado!")
     };
 
     return (
         <>
-            <Header actualPage="contact"/>
+            <Header actualPage="/contact"/>
             <Box maxW="lg" mx="auto" p={8}>
                 <Heading as="h1" mb={6}>Entre em Contato</Heading>
                 <form onSubmit={handleSubmit}>
