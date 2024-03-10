@@ -21,7 +21,7 @@ const Header = ({ actualPage = "home" }) => {
                     <Flex alignItems="center">
                         <Text color="gray.500" mr={2}>{user?.displayName}</Text>
                         <Menu>
-                            <MenuButton as={Avatar} name={user?.displayName} size="sm" p={2} />
+                            <MenuButton as={Avatar} name={user?.displayName} size="sm" p={2} _hover={{ cursor: "pointer" }} />
                             <MenuList>
                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
                             </MenuList>
