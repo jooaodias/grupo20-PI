@@ -4,6 +4,7 @@
 
 - Denison Vieira Pimenta > [rockydenison](https://github.com/rockydenison)
 - Gabriel Krug de Oliveira > [gabrielkrug](https://github.com/gabrielkrug)
+- Filipe Mateus Teixeira de Andrade > [filipetandrade](https://github.com/filipetandrade)
 - João Vitor Aleixo Dias > [jooaodias](https://github.com/jooaodias)
 - Leonardo José Bruno > [leonardojb](https://github.com/leonardojb)
 - Raquel Barros Freitas > [rakeu](https://github.com/rakeu)
